@@ -13,8 +13,13 @@ class RegisterTransactionService(
 
     fun execute(request: TransactionRequest) : TransactionResponse {
 
-        resolveCategoryService.execute(request.mcc, request.merchant);
+        val accountOpt = accountRepository.findById(request.account);
+        if (accountOpt.isEmpty) {
+            return TransactionResponse("07")
+        }
 
-        return TransactionResponse("");
+        val category = resolveCategoryService.execute(request.mcc, request.merchant);
+
+        return TransactionResponse("00");
     }
 }
