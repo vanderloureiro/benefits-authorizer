@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service
 @Service
 class ResolveCategoryService {
 
-    fun execute(mcc: String, merchant: String?): Category {
+    fun execute(mcc: String, merchant: String? = null): Category {
         merchant?.let {
             if (it.contains("RESTAURANTE", true)) {
                 return Category.FOOD
