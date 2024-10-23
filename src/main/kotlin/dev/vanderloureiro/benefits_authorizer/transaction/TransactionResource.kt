@@ -11,12 +11,11 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/transactions")
-class TransactionResource {
+class TransactionResource(val service: RegisterTransactionService) {
 
     @PostMapping
     fun execute(@RequestBody @Valid request: TransactionRequest): ResponseEntity<TransactionResponse> {
 
-        val response = TransactionResponse("")
-        return ResponseEntity.ok(response)
+        return ResponseEntity.ok(service.execute(request))
     }
 }

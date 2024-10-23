@@ -6,4 +6,4 @@ data class TransactionRequest(
     val account: Long,
     val amount: BigDecimal,
     val merchant: String,
-    val mcc: Int)
+    val mcc: String)
