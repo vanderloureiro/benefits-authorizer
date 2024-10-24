@@ -19,7 +19,6 @@ class RegisterTransactionService(
     private val balanceErrorStatusCode: String = "51";
     private val successStatusCode: String = "00";
 
-    @Transactional
     fun execute(request: TransactionRequest) : TransactionResponse {
 
         val accountOpt = accountRepository.findById(request.account);
@@ -27,7 +26,7 @@ class RegisterTransactionService(
             return TransactionResponse(unknownErrorStatusCode)
         }
 
-        val category = resolveCategoryService.execute(request.mcc, request.merchant);
+        val category = resolveCategoryService.execute(request.mcc);
 
         try {
             registerAccountBalanceService.execute(accountOpt.get(), request.amount, category)

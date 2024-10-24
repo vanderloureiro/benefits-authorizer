@@ -12,9 +12,9 @@ data class Account(
     @Id
     @GeneratedValue
     var id: Long?,
-    val name: String,
-    val foodAmount: BigDecimal = BigDecimal.ZERO,
-    val mealAmount: BigDecimal = BigDecimal.ZERO,
-    val cashAmount: BigDecimal = BigDecimal.ZERO,
-    val totalAmount: BigDecimal = BigDecimal.ZERO
+    var name: String,
+    var foodAmount: BigDecimal = BigDecimal.ZERO,
+    var mealAmount: BigDecimal = BigDecimal.ZERO,
+    var cashAmount: BigDecimal = BigDecimal.ZERO,
+    var totalAmount: BigDecimal = BigDecimal.ZERO
 )

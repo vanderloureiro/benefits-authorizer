@@ -6,15 +6,25 @@ import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/transactions")
 class TransactionResource(val service: RegisterTransactionService) {
 
-    @PostMapping
-    fun execute(@RequestBody @Valid request: TransactionRequest): ResponseEntity<TransactionResponse> {
+    @PostMapping("/v1/transactions")
+    fun executeV1(@RequestBody @Valid request: TransactionRequest): ResponseEntity<TransactionResponse> {
+
+        return ResponseEntity.ok(service.execute(request))
+    }
+
+    @PostMapping("/v2/transactions")
+    fun executeV2(@RequestBody @Valid request: TransactionRequest): ResponseEntity<TransactionResponse> {
+
+        return ResponseEntity.ok(service.execute(request))
+    }
+
+    @PostMapping("/v3/transactions")
+    fun executeV3(@RequestBody @Valid request: TransactionRequest): ResponseEntity<TransactionResponse> {
 
         return ResponseEntity.ok(service.execute(request))
     }
