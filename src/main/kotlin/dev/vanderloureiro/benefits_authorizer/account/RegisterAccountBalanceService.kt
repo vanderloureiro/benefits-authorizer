@@ -1,7 +1,6 @@
 package dev.vanderloureiro.benefits_authorizer.account
 
 import dev.vanderloureiro.benefits_authorizer.category.Category
-import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
 
@@ -24,7 +23,7 @@ class RegisterAccountBalanceService(val accountRepository: AccountRepository) {
 
     private fun saveMealBalance(amount: BigDecimal, account: Account) {
         if (account.mealAmount.compareTo(amount) <= 0) {
-            throw Exception()
+            throw NoBenefitBalanceException()
         }
         account.mealAmount = account.mealAmount.subtract(amount);
         account.totalAmount = account.totalAmount.subtract(amount);
@@ -33,7 +32,7 @@ class RegisterAccountBalanceService(val accountRepository: AccountRepository) {
 
     private fun saveFoodBalance(amount: BigDecimal, account: Account) {
         if (account.foodAmount.compareTo(amount) <= 0) {
-            throw Exception();
+            throw NoBenefitBalanceException();
         }
         account.foodAmount = account.foodAmount.subtract(amount);
         account.totalAmount = account.totalAmount.subtract(amount);

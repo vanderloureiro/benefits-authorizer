@@ -9,23 +9,26 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class TransactionResource(val service: RegisterTransactionService) {
+class TransactionResource(
+    val registerTransactionService: RegisterTransactionService,
+    val registerTransactionFallbackService: RegisterTransactionFallbackService,
+    val registerTransactionMerchantService: RegisterTransactionMerchantService) {
 
     @PostMapping("/v1/transactions")
     fun executeV1(@RequestBody @Valid request: TransactionRequest): ResponseEntity<TransactionResponse> {
 
-        return ResponseEntity.ok(service.execute(request))
+        return ResponseEntity.ok(registerTransactionService.execute(request))
     }
 
     @PostMapping("/v2/transactions")
     fun executeV2(@RequestBody @Valid request: TransactionRequest): ResponseEntity<TransactionResponse> {
 
-        return ResponseEntity.ok(service.execute(request))
+        return ResponseEntity.ok(registerTransactionFallbackService.execute(request))
     }
 
     @PostMapping("/v3/transactions")
     fun executeV3(@RequestBody @Valid request: TransactionRequest): ResponseEntity<TransactionResponse> {
 
-        return ResponseEntity.ok(service.execute(request))
+        return ResponseEntity.ok(registerTransactionMerchantService.execute(request))
     }
 }
