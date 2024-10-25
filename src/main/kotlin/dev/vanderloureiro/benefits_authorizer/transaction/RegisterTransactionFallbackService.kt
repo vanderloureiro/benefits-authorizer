@@ -2,6 +2,7 @@ package dev.vanderloureiro.benefits_authorizer.transaction
 
 import dev.vanderloureiro.benefits_authorizer.account.AccountRepository
 import dev.vanderloureiro.benefits_authorizer.account.NoBenefitBalanceException
+import dev.vanderloureiro.benefits_authorizer.account.NoCashBalanceException
 import dev.vanderloureiro.benefits_authorizer.account.RegisterAccountBalanceService
 import dev.vanderloureiro.benefits_authorizer.category.Category
 import dev.vanderloureiro.benefits_authorizer.category.ResolveCategoryService
@@ -33,8 +34,12 @@ class RegisterTransactionFallbackService (
         try {
             registerAccountBalanceService.execute(accountOpt.get(), request.amount, category)
         } catch (e: NoBenefitBalanceException) {
-            registerAccountBalanceService.execute(accountOpt.get(), request.amount, Category.CASH)
-        } catch (e: Exception) {
+            try {
+                registerAccountBalanceService.execute(accountOpt.get(), request.amount, Category.CASH)
+            } catch (e: NoCashBalanceException) {
+                return TransactionResponse(balanceErrorStatusCode)
+            }
+        } catch (e: NoCashBalanceException) {
             return TransactionResponse(balanceErrorStatusCode);
         }
 

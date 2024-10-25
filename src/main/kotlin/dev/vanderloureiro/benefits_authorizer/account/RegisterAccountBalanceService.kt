@@ -42,7 +42,7 @@ class RegisterAccountBalanceService(val accountRepository: AccountRepository) {
 
     private fun saveCashBalance(amount: BigDecimal, account: Account) {
         if (account.cashAmount.compareTo(amount) <= 0) {
-            throw Exception();
+            throw NoCashBalanceException();
         }
         account.cashAmount = account.cashAmount.subtract(amount);
         account.totalAmount = account.totalAmount.subtract(amount);

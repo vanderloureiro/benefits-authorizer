@@ -78,6 +78,7 @@
 		</dependency>
 	</dependencies>
 
+
 	<build>
 		<sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
 		<testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
@@ -95,6 +96,7 @@
 					</args>
 					<compilerPlugins>
 						<plugin>spring</plugin>
+						<plugin>all-open</plugin>
 						<plugin>jpa</plugin>
 					</compilerPlugins>
 					<pluginOptions>

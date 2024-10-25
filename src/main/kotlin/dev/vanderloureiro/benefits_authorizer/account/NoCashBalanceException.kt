@@ -1,4 +1,3 @@
 package dev.vanderloureiro.benefits_authorizer.account
 
-class NoCashBalanceException {
-}
+class NoCashBalanceException: Exception()
