@@ -2,7 +2,7 @@
 
 Autorizador de benefício do projeto take-home Cajú
 
-## Stack
+### Stack
 <ul>
     <li>Kotlin</li>
     <li>Spring Boot</li>
@@ -10,27 +10,27 @@ Autorizador de benefício do projeto take-home Cajú
     <li>JUnit</li>
 </ul>
 
-## Execução
+### Execução
 
 <b>Maven</b><br>
-É possível executar entrando na pasta do projeto e executando o wrapper do maven com:
+É possível rodar a aplicação entrando na pasta do projeto e executando o wrapper do maven com:
 
 ``./mvnw spring-boot:run``
 
 <b>Docker</b><br>
-Outra forma é através do Docker, uma imagem docker pública foi disponibilizada no DockerHub:
+Outra forma é através do Docker. Uma imagem docker pública foi disponibilizada no DockerHub:
 
 ``docker run -p 8080:8080 vanderloureiro/benefits-authorizer:latest``
 
-## Acesso
+### Acesso
 
 Os endpoints estão documentos pelo Swagger. Após iniciar a aplicação, a documentação roda em:
 
 ``http://localhost:8080/swagger-ui/index.html``
 
-## Banco de Dados
+### Banco de Dados
 
-A aplicação roda com um banco de dados relacional H2. A escolha foi pela simplicidade e portabilidade. Disponível acessa-lo pelo endereço:
+O projeto roda com um banco de dados relacional H2. A escolha foi pela simplicidade e portabilidade. Disponível acessa-lo pelo endereço:
 
 ``http://localhost:8080/h2-console``
 
