@@ -54,4 +54,11 @@ uma abordagem mais adequada seria com Lock Otimista.
 A tabela de Account pode ter um campo de versão gerenciando seu ultimo estado. 
 Caso a versão da escrita esteja diferente da versão de leitura, uma ação de retry e tratamento de exceção é feito.
 
+### Considerações e melhorias
 
+A organização de pacotes foi feita seguindo a abordagem de Package By Feature 
+[(Link de artigo com mais detalhes)](https://medium.com/@vanderloureiro/desenvolvimento-modularizado-com-pacote-por-recurso-package-by-feature-b0b237fca8ef)
+
+Há duplicidade de código nas versões L1 (RegisterTransactionService), L2 (RegisterTransactionFallbackService) e 
+L3 (RegisterTransactionMerchantService). Como a versão final será a L3, as outras podem ser descartadas; se L1 e L2 
+precisassem existir paralelamente, alguma abordagem de herança poderia ser usada.
